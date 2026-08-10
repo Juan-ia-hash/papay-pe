@@ -16,7 +16,7 @@ export function CheckoutModal({ items, total, onClose, onOrdered }: { items: Car
     const next: Errors = {
       name: customer.name.trim() ? undefined : 'Ingresa tu nombre.',
       phone: /^9\d{8}$/.test(customer.phone.replace(/\s/g, '')) ? undefined : 'Ingresa un celular peruano válido de 9 dígitos.',
-      address: customer.address.trim() ? undefined : 'Ingresa la dirección de entrega.',
+      address: customer.address.trim() ? undefined : 'Ingresa la dirección exacta de entrega.',
     }
     setErrors(next)
     if (next.name || next.phone || next.address) return
@@ -31,7 +31,7 @@ export function CheckoutModal({ items, total, onClose, onOrdered }: { items: Car
       <form onSubmit={submit} noValidate autoComplete="off">
         <label>Nombre<input value={customer.name} onChange={(e) => update('name', e.target.value)} autoComplete="name" aria-invalid={!!errors.name}/>{errors.name && <small>{errors.name}</small>}</label>
         <label>Celular<input name="papay-order-phone" value={customer.phone} onChange={(e) => update('phone', e.target.value)} inputMode="tel" autoComplete="off" aria-invalid={!!errors.phone}/>{errors.phone && <small>{errors.phone}</small>}</label>
-        <label>Address (not exact)<textarea value={customer.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" rows={3} aria-invalid={!!errors.address}/>{errors.address && <small>{errors.address}</small>}</label>
+        <label>Dirección (debe ser exacta)<textarea value={customer.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" rows={3} aria-invalid={!!errors.address}/>{errors.address && <small>{errors.address}</small>}</label>
         <button className="add-button" type="submit">Enviar mi pedido por WhatsApp <span>→</span></button>
       </form>
     </div>
