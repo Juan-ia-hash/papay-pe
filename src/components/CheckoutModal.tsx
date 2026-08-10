@@ -28,11 +28,11 @@ export function CheckoutModal({ items, total, onClose, onOrdered }: { items: Car
     <div className="checkout-form">
       <p className="eyebrow">Último paso</p><h2 id="checkout-title">Revisa tu pedido.</h2>
       <p>Completa tus datos. Abriremos WhatsApp con tu pedido listo para enviar.</p>
-      <form onSubmit={submit} noValidate>
+      <form onSubmit={submit} noValidate autoComplete="off">
         <label>Nombre<input value={customer.name} onChange={(e) => update('name', e.target.value)} autoComplete="name" aria-invalid={!!errors.name}/>{errors.name && <small>{errors.name}</small>}</label>
-        <label>Celular<input value={customer.phone} onChange={(e) => update('phone', e.target.value)} inputMode="tel" placeholder="936 739 965" autoComplete="tel" aria-invalid={!!errors.phone}/>{errors.phone && <small>{errors.phone}</small>}</label>
-        <label>Dirección de entrega<textarea value={customer.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" rows={3} aria-invalid={!!errors.address}/>{errors.address && <small>{errors.address}</small>}</label>
-        <button className="add-button" type="submit">Abrir WhatsApp con mi pedido <span>→</span></button>
+        <label>Celular<input name="papay-order-phone" value={customer.phone} onChange={(e) => update('phone', e.target.value)} inputMode="tel" autoComplete="off" aria-invalid={!!errors.phone}/>{errors.phone && <small>{errors.phone}</small>}</label>
+        <label>Address (not exact)<textarea value={customer.address} onChange={(e) => update('address', e.target.value)} autoComplete="street-address" rows={3} aria-invalid={!!errors.address}/>{errors.address && <small>{errors.address}</small>}</label>
+        <button className="add-button" type="submit">Enviar mi pedido por WhatsApp <span>→</span></button>
       </form>
     </div>
     <aside className="checkout-summary"><p className="eyebrow">Resumen del pedido</p>
