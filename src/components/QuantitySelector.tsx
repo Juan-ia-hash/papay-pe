@@ -1,0 +1,2 @@
+type Props = { value: number; onChange: (value: number) => void; label?: string }
+export function QuantitySelector({ value, onChange, label = 'Cantidad de kilos' }: Props) { return <div className="quantity" aria-label={label}><button type="button" onClick={() => onChange(Math.max(1, value - 1))} aria-label="Reducir kilos">−</button><output>{value} kg</output><button type="button" onClick={() => onChange(value + 1)} aria-label="Aumentar kilos">+</button></div> }

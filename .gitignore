@@ -1,0 +1,26 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+
+# Local environment and Vercel files
+.env
+.env.*
+!.env.example
+.vercel/
+
+# Generated TypeScript/Vite artifacts
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Local agent tooling
+.agents/
+skills-lock.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
