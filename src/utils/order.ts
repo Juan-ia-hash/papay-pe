@@ -2,12 +2,12 @@ import { WHATSAPP_NUMBER } from '../config/site'
 import { getProduct } from '../data/products'
 import type { CartItem, Customer } from '../types'
 export const money = (value: number) => `S/ ${value.toFixed(2)}`
-export const unitPrice = (item: CartItem) => { const p = getProduct(item.productId); return item.quality ? p.qualities![item.quality].price : p.price }
-export const itemName = (item: CartItem) => { const p = getProduct(item.productId); return item.quality ? `${p.name} — ${p.qualities![item.quality].label}` : p.name }
+export const unitPrice = (item: CartItem) => getProduct(item.productId).qualities[item.quality].price
+export const itemName = (item: CartItem) => { const p = getProduct(item.productId); return `${p.name} — ${p.qualities[item.quality].label}` }
 export const total = (items: CartItem[]) => items.reduce((sum, item) => sum + unitPrice(item) * item.kilos, 0)
 export const totalKilos = (items: CartItem[]) => items.reduce((sum, item) => sum + item.kilos, 0)
 export const makeWhatsAppUrl = (items: CartItem[], customer: Customer) => {
   const rows = items.map((item) => `🥔 ${itemName(item)}\n${item.kilos} kg × ${money(unitPrice(item))}\nSubtotal: ${money(item.kilos * unitPrice(item))}`).join('\n\n')
-  const message = `Hola, PAPAY. Quiero realizar un pedido:\n\n${rows}\n\nTotal: ${totalKilos(items)} kg\nTOTAL: ${money(total(items))}\n\nNombre: ${customer.name.trim()}\nTeléfono: ${customer.phone.trim()}\nDirección:\n${customer.address.trim()}`
+  const message = `Hola, PAPAY. Quiero realizar un pedido:\n\n${rows}\n\nTotal: ${totalKilos(items)} kg\nTOTAL: ${money(total(items))}\n\nNombre: ${customer.name.trim()}\nDirección:\n${customer.address.trim()}`
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
